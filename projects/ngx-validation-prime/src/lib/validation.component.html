@@ -1,0 +1,15 @@
+<div class="input-container">
+  <ng-content></ng-content>
+  <div class="validation-container">
+    <div class="validation-icon">
+      <i class="material-icons error-icon">error</i>
+    </div>
+    <div class="validation-content">
+      <span class="validation-message validation-left">
+        <span *ngFor="let error of validationErrors">
+          <span *ngIf="formControl?.errors?.[error.error]">{{ error.description }}</span>
+        </span>
+      </span>
+    </div>
+  </div>
+</div>

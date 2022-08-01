@@ -1,0 +1,118 @@
+$error: #db3939;
+$white: #ffffff;
+
+.input-container {
+  position: relative;
+}
+
+:host ::ng-deep .ng-invalid.ng-touched {
+  border: 0.0714rem solid $error !important;
+
+  ~ .validation-container {
+    visibility: visible;
+  }
+}
+
+// TODO: See if this can be more generic
+:host ::ng-deep p-autocomplete.ng-invalid.ng-touched {
+  input {
+    border: 0.0714rem solid $error !important;
+  }
+
+  ~ .validation-container {
+    visibility: visible;
+  }
+}
+
+.validation-container {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0.7143rem;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  .validation-icon {
+    width: 1.4286rem;
+    height: 1.4286rem;
+    color: $error;
+    box-sizing: border-box;
+    box-shadow: none;
+    display: inline-block;
+    cursor: default;
+    .error-icon {
+      line-height: 1.4286rem;
+    }
+    &:hover + .validation-content .validation-message {
+      visibility: visible;
+    }
+  }
+
+  .validation-content {
+    position: absolute;
+    .validation-message {
+      visibility: hidden;
+      min-width: 7rem;
+      font-size: 0.7143rem;
+      background-color: $error;
+      color: $white;
+      text-align: center;
+      border-radius: 0.1429rem;
+      padding: 0.3571rem 0;
+      position: absolute;
+      z-index: 1;
+      top: -1.1429rem;
+      left: 1.8571rem;
+      &:hover {
+        visibility: visible;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        margin-top: -0.3571rem;
+        border-width: 0.3571rem;
+        border-style: solid;
+        border-color: transparent $error transparent transparent;
+        width: 100%;
+      }
+      &.long-message {
+        width: 14.2857rem;
+      }
+      &.validation-left {
+        left: auto;
+        right: 0.2857rem;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: auto;
+          left: 100%;
+          margin-top: -0.3571rem;
+          border-width: 0.3571rem;
+          border-style: solid;
+          border-color: transparent transparent transparent $error;
+        }
+      }
+      &.validation-top {
+        left: auto;
+        right: -1.5rem;
+        top: -3.3571rem;
+        &::after {
+          content: "";
+          position: absolute;
+          top: auto;
+          right: auto;
+          bottom: -0.7143rem;
+          left: 80%;
+          margin-top: -0.3571rem;
+          border-width: 0.3571rem;
+          border-style: solid;
+          border-color: $error transparent transparent transparent;
+        }
+      }
+    }
+  }
+}
